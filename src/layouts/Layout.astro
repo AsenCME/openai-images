@@ -16,7 +16,9 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<main class="container mx-auto py-12 px-4">
+			<slot />
+		</main>
 	</body>
 </html>
 <style is:global>
@@ -31,5 +33,17 @@ const { title } = Astro.props;
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+	@tailwind base;
+	@layer base{
+		.hoverable {
+			@apply cursor-pointer transform hover:-translate-y-px hover:shadow transition
+		}
+		input, select {
+			@apply focus:outline-none bg-transparent border-2 border-lime-800 px-2 rounded h-8 w-full
+		}
+		input[type="checkbox"] {
+			@apply border-none accent-lime-800 focus:ring-2 focus:ring-offset-2 focus:ring-lime-800
+		}
 	}
 </style>

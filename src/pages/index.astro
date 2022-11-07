@@ -1,27 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Prompt from "../components/Prompt.tsx";
-import {getClient,getToday} from "../db";
+import TodaySummary from "../components/TodaySummary.tsx";
+import Add from "../components/Add.tsx";
+
+import { getClient, getToday } from "../db";
 const client = await getClient(import.meta.env.SUPABASE_KEY);
-const records = await getToday(client);
+const today = await getToday(client);
 ---
 
-<Layout title="Welcome to Astro.">
-	<main class="container mx-auto py-12 px-4">
-		<h1 class="text-4xl font-bold">
-			Welcome to <span class="text-gradient">Astro</span>
-		</h1>
-		{JSON.stringify(records, null, 2)}
-    	<Prompt client:load />
-	</main>
+<Layout title="Expenses">
+	<Add client:load/>
+    <TodaySummary data={today}/>
 </Layout>
-
-<style>
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-</style>
