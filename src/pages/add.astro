@@ -1,0 +1,9 @@
+---
+import Add from "../components/Add";
+import Layout from "../layouts/Layout.astro";
+import { getClient } from "../db";
+const client = await getClient(import.meta.env.SUPABASE_KEY)
+---
+<Layout title="Add a new record">
+    <Add client:load dbClient={client} />
+</Layout>

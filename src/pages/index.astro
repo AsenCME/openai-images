@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TodaySummary from "../components/TodaySummary.tsx";
-import Add from "../components/Add.tsx";
+import TodaySummary from "../components/TodaySummary";
+import Add from "../components/Add";
 
 import { getClient, getToday } from "../db";
 const client = await getClient(import.meta.env.SUPABASE_KEY);
@@ -9,6 +9,5 @@ const today = await getToday(client);
 ---
 
 <Layout title="Expenses">
-	<Add client:load/>
     <TodaySummary data={today}/>
 </Layout>
